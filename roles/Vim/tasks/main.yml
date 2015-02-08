@@ -8,4 +8,5 @@
   sudo: no
 - name: "setup dotfiles"
   shell: sh ./setup.sh chdir=/home/vagrant/dotfiles
-  sudo: no
+  sudo: yes
+  sudo_user: vagrant

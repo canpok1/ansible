@@ -3,7 +3,6 @@
        force=yes
        update_cache=yes
   with_items:
-  - git
   # for ruby-build
   - autoconf
   - bison
