@@ -23,10 +23,12 @@
   - libsqlite3-dev
 - name: "download rbenv"
   git: repo=https://github.com/sstephenson/rbenv.git dest=~/.rbenv
-  sudo: no
+  sudo: yes
+  sudo_user: vagrant
 - name: "download ruby-build"
   git: repo=https://github.com/sstephenson/ruby-build.git dest=~/.rbenv/plugins/ruby-build
-  sudo: no
+  sudo: yes
+  sudo_user: vagrant
 - name: "install ruby and rails"
   shell: "{{ item }}"
   with_items:
@@ -42,4 +44,5 @@
     - /bin/bash -lc "gem install bundler"
     - /bin/bash -lc "gem install --no-ri --no-rdoc rails --version 4.0.5"
     - /bin/bash -lc "rbenv rehash"
-  sudo: no
+  sudo: yes
+  sudo_user: vagrant
