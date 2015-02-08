@@ -1,0 +1,7 @@
+- name: "install heroku toolbelt"
+  shell: "{{ item }}"
+  with_items:
+    - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+    - echo 'PATH="/usr/local/heroku/bin:$PATH"' >> ~/.profile
+    - source ~/.profile
+  sudo: no
