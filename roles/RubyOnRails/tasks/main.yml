@@ -1,0 +1,46 @@
+- sudo: yes
+  apt: pkg={{ item }}
+       force=yes
+       update_cache=yes
+  with_items:
+  - git
+  # for ruby-build
+  - autoconf
+  - bison
+  - build-essential
+  - libssl-dev
+  - libyaml-dev
+  - libreadline6-dev
+  - zlib1g-dev
+  - libncurses5-dev
+  - libffi-dev
+  - libgdbm3
+  - libgdbm-dev
+  # for rails
+  - nodejs
+  - libxml2-dev
+  - libxslt1-dev
+  - libpq-dev
+  - libsqlite3-dev
+- name: "download rbenv"
+  git: repo=https://github.com/sstephenson/rbenv.git dest=~/.rbenv
+  sudo: no
+- name: "download ruby-build"
+  git: repo=https://github.com/sstephenson/ruby-build.git dest=~/.rbenv/plugins/ruby-build
+  sudo: no
+- name: "install ruby and rails"
+  shell: "{{ item }}"
+  with_items:
+    - echo 'PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    - echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    - /bin/bash -lc "rbenv install 2.0.0-p598"
+    - /bin/bash -lc "rbenv rehash"
+    - /bin/bash -lc "rbenv versions"
+    - /bin/bash -lc "rbenv global 2.0.0-p598"
+    - /bin/bash -lc "ruby -v"
+    - /bin/bash -lc "which ruby"
+    - /bin/bash -lc "gem update --system 2.0.3"
+    - /bin/bash -lc "gem install bundler"
+    - /bin/bash -lc "gem install --no-ri --no-rdoc rails --version 4.0.5"
+    - /bin/bash -lc "rbenv rehash"
+  sudo: no

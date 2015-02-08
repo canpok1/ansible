@@ -1,0 +1,11 @@
+- name: "install vim"
+  apt: pkg={{ item }} force=yes update_cache=yes
+  with_items:
+    - vim
+  sudo: yes
+- name: "download dotfiles"
+  git: repo=https://github.com/canpok1/dotfiles.git dest=/home/vagrant/dotfiles
+  sudo: no
+- name: "setup dotfiles"
+  shell: sh ./setup.sh chdir=/home/vagrant/dotfiles
+  sudo: no
