@@ -1,3 +1,3 @@
 - shell: apt-add-repository -y ppa:openjdk-r/ppa
-- shell: apt-get update
+- shell: apt-get -y update
 - shell: apt-get -y install openjdk-8-jdk
